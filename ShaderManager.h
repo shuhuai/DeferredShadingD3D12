@@ -4,7 +4,7 @@
 //To do :
 
 //2.Multi-thread loading
-//3.A Map table to acces shader fast
+//3.A Map table to speed up accessing shaders
 #pragma once
 #include "DirectxHelper.h"
 #include <vector>

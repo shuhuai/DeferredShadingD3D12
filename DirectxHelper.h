@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include <comdef.h>
 //To do:
-//Create a helper class to convert Upload to default resource
+//Create a helper class to convert upload to default resources
 #pragma once
 
 using namespace Microsoft::WRL;
