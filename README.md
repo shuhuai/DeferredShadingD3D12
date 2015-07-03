@@ -72,7 +72,7 @@ The specular shading model is microfacet specular BRDF with Ggx NDF, and the dif
 ###A few management classes are used in this project: 
 
 1.Device manager: 
-  Some basic function to do rendering, and the mannager helps to initialize and get the D3D12 global components. 
+  Some basic functions to do rendering, and the mannager helps to initialize and get the D3D12 global components. 
 
 
 2.Shader manager: 
