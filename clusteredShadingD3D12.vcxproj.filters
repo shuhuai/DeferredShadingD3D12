@@ -111,10 +111,10 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefferedRender.hlsli">
+    <None Include="Lighting.hlsli">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Lighting.hlsli">
+    <None Include="DeferredRender.hlsli">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

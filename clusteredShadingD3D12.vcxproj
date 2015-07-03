@@ -137,7 +137,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DefferedRender.hlsli" />
+    <None Include="DeferredRender.hlsli" />
     <None Include="Lighting.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

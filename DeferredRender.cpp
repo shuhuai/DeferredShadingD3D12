@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "DeferredRender.h"
 #include "VertexStructures.h"
-void DefferedRender::Init()
+void DeferredRender::Init()
 {
 
 
@@ -21,14 +21,14 @@ void DefferedRender::Init()
 	InitWindowSizeDependentResources();
 }
 
-void DefferedRender::InitWindowSizeDependentResources()
+void DeferredRender::InitWindowSizeDependentResources()
 {
 	CreateRTV();
 	CreateDSV();
 
 }
 
-void DefferedRender::CreatePso()
+void DeferredRender::CreatePso()
 {
 
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC descPipelineState;
@@ -56,7 +56,7 @@ void DefferedRender::CreatePso()
 	
 }
 
-void DefferedRender::CreateCB()
+void DeferredRender::CreateCB()
 {
 	CD3DX12_HEAP_PROPERTIES heapProperty(D3D12_HEAP_TYPE_UPLOAD);
 	D3D12_RESOURCE_DESC resourceDesc;
@@ -79,7 +79,7 @@ void DefferedRender::CreateCB()
 
 }
 
-void DefferedRender::CreateViews()
+void DeferredRender::CreateViews()
 {
 	
 	m_cbvsrvHeap.Create(g_d3dObjects->GetD3DDevice(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 10, true);
@@ -95,7 +95,7 @@ void DefferedRender::CreateViews()
 	g_d3dObjects->GetD3DDevice()->CreateConstantBufferView(&descBuffer, m_cbvsrvHeap.hCPU(1));
 }
 
-void DefferedRender::CreateDSV()
+void DeferredRender::CreateDSV()
 {
 	//Create DSV 
 	m_dsvHeap.Create(g_d3dObjects->GetD3DDevice(), D3D12_DESCRIPTOR_HEAP_TYPE_DSV,1);
@@ -144,9 +144,9 @@ void DefferedRender::CreateDSV()
 
 }
 
-void DefferedRender::CreateRTV()
+void DeferredRender::CreateRTV()
 {
-	//Create deffered buffers
+	//Create deferred buffers
 	//1.Albedo
 	//2.Normal
 	//3.Specular + Gloss
@@ -218,7 +218,7 @@ void DefferedRender::CreateRTV()
 
 
 
-void DefferedRender::ApplyGBufferPSO(ID3D12GraphicsCommandList * command,bool bSetPSO)
+void DeferredRender::ApplyGBufferPSO(ID3D12GraphicsCommandList * command,bool bSetPSO)
 {
 	ID3D12DescriptorHeap* ppHeaps[1] = { m_cbvsrvHeap.pDH.Get() };
 	if (bSetPSO)
@@ -241,7 +241,7 @@ void DefferedRender::ApplyGBufferPSO(ID3D12GraphicsCommandList * command,bool bS
 
 }
 
-void DefferedRender::ApplyLightingPSO(ID3D12GraphicsCommandList * command, bool bSetPSO)
+void DeferredRender::ApplyLightingPSO(ID3D12GraphicsCommandList * command, bool bSetPSO)
 {
 
 	for (int i = 0; i < numRTV; i++)
@@ -258,7 +258,7 @@ void DefferedRender::ApplyLightingPSO(ID3D12GraphicsCommandList * command, bool 
 	
 }
 
-void DefferedRender::UpdateConstantBuffer(CameraData& camData, LightData& ligData)
+void DeferredRender::UpdateConstantBuffer(CameraData& camData, LightData& ligData)
 {
 	void* mapped = nullptr;
 	mViewCB->Map(0, nullptr, &mapped);
@@ -270,7 +270,7 @@ void DefferedRender::UpdateConstantBuffer(CameraData& camData, LightData& ligDat
 	mLightCB->Unmap(0, nullptr);	
 }
 
-void DefferedRender::CreateLightPassPSO()
+void DeferredRender::CreateLightPassPSO()
 {
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC descPipelineState;
 	ZeroMemory(&descPipelineState, sizeof(descPipelineState));
@@ -298,7 +298,7 @@ void DefferedRender::CreateLightPassPSO()
 	ThrowIfFailed(g_d3dObjects->GetD3DDevice()->CreateGraphicsPipelineState(&descPipelineState, IID_PPV_ARGS(&mLightPso)));
 }
 
-void DefferedRender::CreateRootSignature()
+void DeferredRender::CreateRootSignature()
 {
 	//Init descriptor tables
 	CD3DX12_DESCRIPTOR_RANGE range[3];

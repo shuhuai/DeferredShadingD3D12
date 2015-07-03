@@ -16,7 +16,7 @@ struct LightData {
 	DirectX::XMFLOAT3 pos;
 
 };
-class DefferedRender
+class DeferredRender
 {
 public:
 	void Init();

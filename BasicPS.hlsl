@@ -1,4 +1,4 @@
-#include "DefferedRender.hlsli"
+#include "DeferredRender.hlsli"
 struct ps_output
 {
 	float3 albedo : SV_TARGET0;

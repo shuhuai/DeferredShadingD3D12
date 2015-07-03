@@ -1,4 +1,4 @@
-#include "DefferedRender.hlsli"
+#include "DeferredRender.hlsli"
 #include "Lighting.hlsli"
 
 Texture2D gAlbedoTexture : register(t0);
