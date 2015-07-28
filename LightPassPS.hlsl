@@ -25,7 +25,7 @@ float4 specGloss = gSpecularGlossTexture[pIn.position.xy].xyzw;
 float3 col=GGXBRDF(normalize(gLightPos.xyz- vPositionWS.xyz), gLightPos, albedo ,normal,
 	normalize(gCamPos - vPositionWS), specGloss.xyz, specGloss.w);
 float d = length(gLightPos.xyz - vPositionWS.xyz);
-col = col*(1.0f / (1.0f + 0.1f*d + 0.01f*d));
+col = col*(1.0f / (1.0f + 0.01f*d + 0.001f*d));
 return float4(col,1.0f);
 
 

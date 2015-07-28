@@ -19,6 +19,6 @@ protected:
 	virtual void MousePress(UINT xpos, UINT ypos) { return; }
 	virtual void MouseRelease(UINT key) { return; }
 	int mWidth;
-	int mheight;
+	int mHeight;
 	HWND mHwnd;
 };

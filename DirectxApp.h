@@ -30,7 +30,7 @@ class directxProcess :public windowsApp
 		if (g_d3dObjects == nullptr)
 		{
 			g_d3dObjects = std::make_shared<D3dDeviceManager>();
-			g_d3dObjects->SetWindows(mHwnd, mWidth, mheight);
+			g_d3dObjects->SetWindows(mHwnd, mWidth, mHeight);
 		}
 		return g_d3dObjects;
 
@@ -54,13 +54,13 @@ protected:
 			g_ShaderManager.LoadFolder("Shaders");
 
 			
-			mCamera.InitProjMatrix(3.14f*0.45f, mWidth, mheight, 0.01f, 10000.0f);
+			mCamera.InitProjMatrix(3.14f*0.45f, mWidth, mHeight, 0.01f, 10000.0f);
 			mCamera.Position(DirectX::XMFLOAT3(0,0.01f,-25.1f));
 			mCamData.MVP = mCamera.ProjView();
 			mCamData.InvPV = mCamera.InvScreenProjView();
 			mCamData.CamPos = mCamera.Position();
 
-			mLightData.pos = XMFLOAT3(0, 10, -10);
+			mLightData.pos = XMFLOAT3(0, 7, -10);
 
 			mDeferredTech.Init();
 			mDeferredTech.UpdateConstantBuffer(mCamData, mLightData);
@@ -90,7 +90,7 @@ protected:
 			
 			float clearColor[4]={ 0.2f,0.5f,0.7f,0.0f };
 			mCommandList->ClearRenderTargetView(g_d3dObjects->GetRenderTargetView(), clearColor,0,nullptr);
-			D3D12_RECT rect = { 0, 0, mWidth, mheight };
+			D3D12_RECT rect = { 0, 0, mWidth, mHeight };
 			
 			
 		
@@ -136,9 +136,10 @@ protected:
 	}
 	void Resize(UINT width, UINT height)
 	{
-	
+		mWidth = width;
+		mHeight = height;
 		GetDeviceResources()->SetWindows(mHwnd,width,height);
-		mCamera.OnResize(mWidth, mheight);
+		mCamera.OnResize(mWidth, mHeight);
 		int x = 0;
 		x++;
 	}

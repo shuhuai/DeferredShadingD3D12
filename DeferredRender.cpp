@@ -248,9 +248,7 @@ void DeferredRender::ApplyLightingPSO(ID3D12GraphicsCommandList * command, bool 
 		AddResourceBarrier(command, mRtvTexture[i].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
 
 	AddResourceBarrier(command, mDsTexture.Get(), D3D12_RESOURCE_STATE_DEPTH_READ, D3D12_RESOURCE_STATE_GENERIC_READ);
-	ID3D12DescriptorHeap* ppHeaps[1] = { m_srvHeap.pDH.Get() };
 
-//	command->SetDescriptorHeaps(1, ppHeaps);
 	command->SetPipelineState(mLightPso.Get());
 	
 	mQuadRender.Draw(command);

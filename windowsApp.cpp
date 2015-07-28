@@ -44,7 +44,7 @@ windowsApp* appPointer;
 windowsApp::windowsApp()
 {
 mWidth=800;
-mheight=600;
+mHeight=600;
 }
 
 int windowsApp::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR    lpCmdLine, int     nCmdShow)
@@ -67,7 +67,7 @@ int windowsApp::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR    lpCmd
 	wc.lpszClassName = "MovingTriangleDX12";
 	RegisterClassEx(&wc);
 
-	RECT rect = { 0, 0, mWidth, mheight };
+	RECT rect = { 0, 0, mWidth, mHeight };
 	DWORD dwStyle = WS_OVERLAPPEDWINDOW &  ~WS_MAXIMIZEBOX;
 	AdjustWindowRect(&rect, dwStyle, FALSE);
 	mHwnd = CreateWindow(wc.lpszClassName,
