@@ -160,7 +160,7 @@ void D3dDeviceManager::CreateWindowSizeDependentResources()
 			);
 	}
 
-
+	
 
 
 	// Create a render target view of the swap chain back buffer.

@@ -13,7 +13,7 @@ class directxProcess :public windowsApp
 	CameraData mCamData;
 	LightData mLightData;
 	GCamera mCamera;
-
+	bool mInit = false;
 	SphereRenderer mSphereRenderer;
 
 	std::shared_ptr<D3dDeviceManager> GetDeviceResources()
@@ -60,7 +60,7 @@ protected:
 			mCamData.InvPV = mCamera.InvScreenProjView();
 			mCamData.CamPos = mCamera.Position();
 
-			mLightData.pos = XMFLOAT3(0, 7, -10);
+			mLightData.pos = XMFLOAT3(0, 7, -15);
 
 			mDeferredTech.Init();
 			mDeferredTech.UpdateConstantBuffer(mCamData, mLightData);
@@ -74,7 +74,7 @@ protected:
 			g_d3dObjects->WaitForGPU();
 		}
 		PIXEndEvent(commandQueue);
-
+		mInit = true;
 	}
 	void Render()
 	{
@@ -88,7 +88,7 @@ protected:
 			
 			AddResourceBarrier(mCommandList.Get(), g_d3dObjects->GetRenderTarget(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 			
-			float clearColor[4]={ 0.2f,0.5f,0.7f,0.0f };
+			float clearColor[4]={ 0.0f,0.0f,0.0f,0.0f };
 			mCommandList->ClearRenderTargetView(g_d3dObjects->GetRenderTargetView(), clearColor,0,nullptr);
 			D3D12_RECT rect = { 0, 0, mWidth, mHeight };
 			
@@ -139,9 +139,12 @@ protected:
 		mWidth = width;
 		mHeight = height;
 		GetDeviceResources()->SetWindows(mHwnd,width,height);
-		mCamera.OnResize(mWidth, mHeight);
-		int x = 0;
-		x++;
+		if (mInit)
+		{
+			mCamera.OnResize(mWidth, mHeight);
+			mDeferredTech.InitWindowSizeDependentResources();
+		}
+
 	}
 
 	void KeyDown(UINT key)

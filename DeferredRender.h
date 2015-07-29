@@ -61,7 +61,7 @@ private:
 	ComPtr<ID3D12Resource> mLightCB;
 	ComPtr<ID3D12Resource> mDsTexture;
 
-	float mClearColor[4] = { 0.2f,0.5f,0.7f,1.0f };
+	float mClearColor[4] = { 0.0,0.0f,0.0f,1.0f };
 	float mClearDepth = 1.0f;
 	const static int numRTV = 3;
 	ComPtr<ID3D12Resource> mRtvTexture[numRTV];

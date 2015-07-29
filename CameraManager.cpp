@@ -105,7 +105,9 @@ void GCamera::InitProjMatrix(const float angle, const float client_width, const 
 	mClientHeight = client_height;
 	mNearest = near_plane;
 	mFarthest = far_plane;
-	XMStoreFloat4x4(&mProj, XMMatrixPerspectiveFovLH(angle, client_width / client_height,
+	float ration = client_width / client_height;
+
+	XMStoreFloat4x4(&mProj, XMMatrixPerspectiveFovLH(angle,ration ,
 		near_plane, far_plane));
 	
 
@@ -315,9 +317,12 @@ void GCamera::InitOrthoMatrix(const float clientWidth, const float clientHeight,
 
 void GCamera::OnResize(uint32_t new_width, uint32_t new_height)
 {
-	mClientWidth = new_width;
-	mClientHeight = new_height;
-	InitProjMatrix(mAngle, static_cast<float>(new_width), static_cast<float>(new_height), mNearest, mFarthest);
-	InitOrthoMatrix(static_cast<float>(new_width), static_cast<float>(new_height), 0.0f, mFarthest);
+	if (new_width != 0 && new_width != 0)
+	{
+		mClientWidth = new_width;
+		mClientHeight = new_height;
+		InitProjMatrix(mAngle, static_cast<float>(new_width), static_cast<float>(new_height), mNearest, mFarthest);
+		InitOrthoMatrix(static_cast<float>(new_width), static_cast<float>(new_height), 0.0f, mFarthest);
+	}
 }
 
