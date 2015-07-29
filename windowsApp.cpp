@@ -64,7 +64,7 @@ int windowsApp::Run(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR    lpCmd
 	wc.hInstance = hInstance;
 	wc.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wc.lpszClassName = "MovingTriangleDX12";
+	wc.lpszClassName = "Deferred Shading";
 	RegisterClassEx(&wc);
 
 	RECT rect = { 0, 0, mWidth, mHeight };
