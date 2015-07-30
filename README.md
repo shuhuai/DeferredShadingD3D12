@@ -1,6 +1,10 @@
 #Simple deferred shading with DirectX 12
 
-A basic deferred shading is implemented by DirectX 12 API. 
+A DirectX 12 implementation of basic deferred shading. 
+
+<img src="https://github.com/shuhuai/D3D12_DeferredShading/blob/master/Demo.png" width="600x" height="450px"/>
+
+
 The project consists of the following stages: 
 
 1. Initializing D3D12 components.
@@ -12,7 +16,7 @@ The project consists of the following stages:
 
 
 ##Initializing components :  
-In the initialization stage, all D3D12 components need to be initialized. This stage is more complex than D3D11. The D3D12 components are initialized as follows: 
+In the initialization stage, all D3D12 components need to be initialized. The D3D12 components are initialized as follows: 
 
 ####1.D3D Device initialization.
 
